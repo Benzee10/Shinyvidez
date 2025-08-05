@@ -52,11 +52,21 @@ The current architecture includes placeholder middleware for session management 
 - **ESBuild**: High-performance bundling for production builds
 
 ### Hosting and Deployment
-- **Vercel**: Configured for seamless deployment with automatic builds from repository
+- **Vercel**: Fully configured for serverless deployment with automatic builds
+  - `vercel.json`: Main deployment configuration with API routing
+  - `build.sh`: Production build script
+  - `.vercelignore`: Deployment exclusions
+  - `api/index.js`: Serverless function entry point for Express backend
 - **Replit**: Development environment support with runtime error handling
 
 ### Media and Content Management
 The platform is designed to support various video sources including embedded iframes (for external video platforms) and direct video file hosting. The content structure supports thumbnail images, duration metadata, and flexible tagging systems for content categorization and discovery.
+
+### Advertisement Integration
+- **Sticky Video Widget**: Random video rotation with overlay redirects to external sites
+- **Daily Popup Modal**: Appears once per day with 10-second delay
+- **Bottom Ad on Video Pages**: Single advertisement placement in video watch page sidebar
+- **Clean Homepage**: All ads removed from homepage for focus on video content
 
 ### Search and Performance
 The application includes client-side search functionality with plans for more sophisticated search implementations. The architecture supports both simple text matching and fuzzy search capabilities, with the foundation laid for integrating advanced search libraries like Fuse.js.
