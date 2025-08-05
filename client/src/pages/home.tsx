@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { VideoWithCreator, Category } from "@shared/schema";
 import { Header } from "@/components/layout/header";
-import { Sidebar } from "@/components/layout/sidebar";
+
 import { VideoGrid } from "@/components/video/video-grid";
 import { AdSlot } from "@/components/ads/ad-slot";
 import { Button } from "@/components/ui/button";
@@ -61,11 +61,9 @@ export default function Home() {
     <div className="min-h-screen bg-gray-900 transition-colors duration-300">
       <Header onSearch={setSearchQuery} />
       
-      <div className="flex">
-        <Sidebar />
-        
-        <main className="flex-1 overflow-hidden">
-          <div className="p-4">
+      <div className="w-full">
+        <main className="w-full overflow-hidden">
+          <div className="p-6 max-w-none">
             {/* Section Header */}
             <section className="mb-6">
               <h1 className="text-2xl font-bold text-white mb-2">Recent & Trending</h1>
@@ -112,13 +110,13 @@ export default function Home() {
 
             {/* Video Grid */}
             {videosLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm animate-pulse">
-                    <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-t-xl"></div>
-                    <div className="p-4 space-y-2">
-                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                      <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {[...Array(15)].map((_, i) => (
+                  <div key={i} className="bg-gray-800 rounded-lg shadow-sm animate-pulse">
+                    <div className="aspect-video bg-gray-700 rounded-t-lg"></div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                      <div className="h-3 bg-gray-600 rounded mb-1"></div>
+                      <div className="h-2 bg-gray-600 rounded w-2/3"></div>
                     </div>
                   </div>
                 ))}
