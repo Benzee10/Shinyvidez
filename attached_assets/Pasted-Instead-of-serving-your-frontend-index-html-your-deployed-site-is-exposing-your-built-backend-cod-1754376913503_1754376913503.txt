@@ -1,0 +1,99 @@
+Instead of serving your frontend (index.html), your deployed site is exposing your built backend code (e.g., server/index.ts) as static JS. That means:
+
+Vercel is serving your API/server code as static assets instead of running them as serverless functions.
+
+This is most likely because your backend wasn’t correctly configured as an API Function, or you bundled server files into your public build (dist/public).
+
+You're using Express, which requires Vercel's @vercel/node serverless runtime.
+
+✅ What You Should See
+Your deployed site should load the frontend (from dist/public/index.html).
+
+Your API routes should work via /api/... (powered by Express).
+
+✅ How to Fix This
+Here’s what you need to do to correctly deploy this to Vercel.
+
+🧩 1. Structure the project properly
+Recommended layout:
+
+pgsql
+Copy
+Edit
+root/
+├── api/
+│   └── index.ts        → Serverless function entry point (Express)
+├── client/
+│   └── index.html      → Vite app entry
+├── dist/
+│   └── public/         → Vite output (frontend)
+├── server/             → All your Express server logic
+├── vercel.json
+└── package.json
+Then use the Express server inside api/index.ts like:
+
+ts
+Copy
+Edit
+// api/index.ts
+import app from '../server/index';
+
+export default app;
+This is what lets Vercel treat the Express app as a serverless function.
+
+🔧 2. Update vercel.json
+Here’s a clean and correct version for your setup:
+
+json
+Copy
+Edit
+{
+  "version": 2,
+  "functions": {
+    "api/index.ts": {
+      "runtime": "@vercel/node@4.0.0",
+      "launcherType": "node"
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "dest": "/api/index.ts" },
+    { "src": "/(.*)", "dest": "/dist/public/index.html" }
+  ]
+}
+🏗️ 3. Update your Build Settings
+In Vercel Project Settings:
+
+Framework Preset: Other
+
+Build Command:
+
+bash
+Copy
+Edit
+npm install && vite build --config vite.config.production.ts && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=api/index.js
+Output Directory:
+
+arduino
+Copy
+Edit
+dist/public
+This command:
+
+Builds your frontend
+
+Bundles your Express app into a single api/index.js file
+
+🛑 Don’t Put Server Files Inside dist/public
+Never let your Vite build emit server/index.ts or related code into the public directory. That’s what’s currently causing the source code exposure.
+
+Your vite.config.ts sets outDir: path.resolve(__dirname, 'dist/public'), which is okay — but make sure the server build is kept out of there.
+
+✅ Final Checklist
+Task	Status
+Move Express entry point to api/index.ts	✅
+Build server with esbuild to api/index.js	✅
+Vite outputs frontend to dist/public	✅
+Vercel uses correct vercel.json config	✅
+Vercel routes /api/* → serverless	✅
+Static frontend served from /

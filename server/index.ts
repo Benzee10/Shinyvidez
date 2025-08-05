@@ -36,7 +36,7 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
+async function initializeApp() {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -56,9 +56,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // For Vercel, export the app instead of starting a server
+  // For Vercel, return the app for serverless functions
   if (process.env.VERCEL) {
-    // Export for Vercel serverless functions
     return app;
   } else {
     // ALWAYS serve the app on the port specified in the environment variable PORT
@@ -73,8 +72,28 @@ app.use((req, res, next) => {
     }, () => {
       log(`serving on port ${port}`);
     });
+    return server;
   }
-})();
+}
 
-// Export for Vercel compatibility
-export default app;
+// Initialize for local development
+if (!process.env.VERCEL) {
+  initializeApp();
+}
+
+// Export initialized app for Vercel
+export default async function handler(req: any, res: any) {
+  await registerRoutes(app);
+  
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+  });
+
+  if (app.get("env") !== "development") {
+    serveStatic(app);
+  }
+
+  return app(req, res);
+}
