@@ -5,6 +5,8 @@ import { Header } from "@/components/layout/header";
 
 import { VideoGrid } from "@/components/video/video-grid";
 import { AdSlot } from "@/components/ads/ad-slot";
+import { BannerAd } from "@/components/ads/banner-ad";
+import { HeaderAd } from "@/components/ads/header-ad";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Filter } from "lucide-react";
@@ -59,6 +61,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 transition-colors duration-300">
+      <HeaderAd />
       <Header onSearch={setSearchQuery} />
       
       <div className="w-full">
@@ -106,6 +109,7 @@ export default function Home() {
             </div>
 
             {/* Top Ad Slot */}
+            <BannerAd type="horizontal" className="mb-8" />
             <AdSlot position="top" className="mb-8" />
 
             {/* Video Grid */}
@@ -126,7 +130,11 @@ export default function Home() {
             )}
 
             {/* Mid Ad Slot */}
-            <AdSlot position="middle" className="my-8" />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-8">
+              <AdSlot position="middle" />
+              <BannerAd type="square" />
+              <BannerAd type="vertical" className="lg:row-span-1" />
+            </div>
 
             {/* Load More Button */}
             {filteredVideos.length > 0 && (
@@ -141,7 +149,15 @@ export default function Home() {
             )}
 
             {/* Bottom Ad Slot */}
-            <AdSlot position="bottom" className="mt-8" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+              <AdSlot position="bottom" />
+              <BannerAd type="horizontal" />
+            </div>
+            
+            {/* Final Banner */}
+            <div className="mt-8">
+              <BannerAd type="horizontal" />
+            </div>
           </div>
         </main>
       </div>
