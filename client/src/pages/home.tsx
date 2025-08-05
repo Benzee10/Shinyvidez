@@ -7,6 +7,7 @@ import { VideoGrid } from "@/components/video/video-grid";
 import { AdSlot } from "@/components/ads/ad-slot";
 import { BannerAd } from "@/components/ads/banner-ad";
 import { HeaderAd } from "@/components/ads/header-ad";
+import { ImageAd } from "@/components/ads/image-ad";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Filter } from "lucide-react";
@@ -109,7 +110,13 @@ export default function Home() {
             </div>
 
             {/* Top Ad Slot */}
-            <BannerAd type="horizontal" className="mb-8" />
+            <ImageAd 
+              imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
+              title="🔥 Premium Adult Entertainment"
+              subtitle="Exclusive content • 4K Quality • Unlimited Access"
+              cta="Join Now"
+              className="h-32 mb-6"
+            />
             <AdSlot position="top" className="mb-8" />
 
             {/* Video Grid */}
@@ -131,9 +138,24 @@ export default function Home() {
 
             {/* Mid Ad Slot */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-8">
-              <AdSlot position="middle" />
-              <BannerAd type="square" />
-              <BannerAd type="vertical" className="lg:row-span-1" />
+              <ImageAd 
+                imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
+                title="Premium Access"
+                subtitle="Unlimited streaming"
+                className="h-48"
+              />
+              <ImageAd 
+                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-m-_6OOa20rzN5-qUcyeQQU2i04HmI10_0o1rM2soZjnFlGWjzv7XlQ3mAH1fimkcg&usqp=CAU"
+                title="Exclusive Content"
+                subtitle="High quality videos"
+                className="h-48"
+              />
+              <ImageAd 
+                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmkMnipC8GGooa81DxOipkMvk78sGbVk1FA&s"
+                title="Join Premium"
+                subtitle="Members only access"
+                className="h-48"
+              />
             </div>
 
             {/* Load More Button */}
@@ -150,13 +172,29 @@ export default function Home() {
 
             {/* Bottom Ad Slot */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <AdSlot position="bottom" />
-              <BannerAd type="horizontal" />
+              <ImageAd 
+                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-m-_6OOa20rzN5-qUcyeQQU2i04HmI10_0o1rM2soZjnFlGWjzv7XlQ3mAH1fimkcg&usqp=CAU"
+                title="Premium Videos"
+                subtitle="Unlimited access to exclusive content"
+                className="h-48"
+              />
+              <ImageAd 
+                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmkMnipC8GGooa81DxOipkMvk78sGbVk1FA&s"
+                title="Join Today"
+                subtitle="Start your premium journey"
+                className="h-48"
+              />
             </div>
             
             {/* Final Banner */}
             <div className="mt-8">
-              <BannerAd type="horizontal" />
+              <ImageAd 
+                imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
+                title="Experience Premium Like Never Before"
+                subtitle="Join thousands of satisfied members • 30-day money back guarantee"
+                cta="Get Started Free"
+                className="h-24"
+              />
             </div>
           </div>
         </main>

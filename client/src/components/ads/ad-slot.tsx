@@ -16,7 +16,7 @@ export function AdSlot({ position, className = "" }: AdSlotProps) {
           subtitle: "Discover exclusive content and premium experiences",
           cta: "Visit Shiny",
           gradient: "from-red-600 to-pink-600",
-          image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=728&h=90"
+          image: "https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
         };
       case "middle":
         return {
@@ -24,7 +24,7 @@ export function AdSlot({ position, className = "" }: AdSlotProps) {
           subtitle: "High-quality content waiting for you",
           cta: "Explore Now", 
           gradient: "from-purple-600 to-red-600",
-          image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200"
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-m-_6OOa20rzN5-qUcyeQQU2i04HmI10_0o1rM2soZjnFlGWjzv7XlQ3mAH1fimkcg&usqp=CAU"
         };
       case "bottom":
         return {
@@ -32,7 +32,7 @@ export function AdSlot({ position, className = "" }: AdSlotProps) {
           subtitle: "Access thousands of exclusive videos",
           cta: "Get Started",
           gradient: "from-pink-600 to-red-600",
-          image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200"
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmkMnipC8GGooa81DxOipkMvk78sGbVk1FA&s"
         };
       default:
         return {
@@ -56,7 +56,7 @@ export function AdSlot({ position, className = "" }: AdSlotProps) {
       <div className="relative p-6">
         {config.image && (
           <div 
-            className="absolute inset-0 bg-cover bg-center opacity-20"
+            className="absolute inset-0 bg-cover bg-center opacity-30"
             style={{ backgroundImage: `url(${config.image})` }}
           />
         )}
