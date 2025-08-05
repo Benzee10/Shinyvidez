@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { VideoWithCreator, Category } from "@shared/schema";
 import { Header } from "@/components/layout/header";
@@ -17,7 +17,6 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
-  const [filteredVideos, setFilteredVideos] = useState<VideoWithCreator[]>([]);
 
   const { data: videos = [], isLoading: videosLoading } = useQuery<VideoWithCreator[]>({
     queryKey: ["/api/videos"],
@@ -27,7 +26,7 @@ export default function Home() {
     queryKey: ["/api/categories"],
   });
 
-  useEffect(() => {
+  const filteredVideos = useMemo(() => {
     let result = [...videos];
 
     // Apply search filter
@@ -57,7 +56,7 @@ export default function Home() {
         break;
     }
 
-    setFilteredVideos(result);
+    return result;
   }, [videos, searchQuery, selectedCategory, sortBy]);
 
   return (
