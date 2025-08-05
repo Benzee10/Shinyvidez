@@ -65,7 +65,7 @@ export default function Home() {
         <Sidebar />
         
         <main className="flex-1 overflow-hidden">
-          <div className="p-6">
+          <div className="p-4">
             {/* Section Header */}
             <section className="mb-6">
               <h1 className="text-2xl font-bold text-white mb-2">Recent & Trending</h1>
