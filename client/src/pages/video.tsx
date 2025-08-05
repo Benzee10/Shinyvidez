@@ -27,14 +27,14 @@ export default function VideoPage() {
 
   if (videoLoading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="min-h-screen bg-gray-900">
         <Header onSearch={setSearchQuery} />
         <div className="p-6">
           <div className="max-w-6xl mx-auto">
             <div className="animate-pulse">
-              <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-xl mb-6"></div>
-              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+              <div className="aspect-video bg-gray-700 rounded-xl mb-6"></div>
+              <div className="h-8 bg-gray-700 rounded w-3/4 mb-4"></div>
+              <div className="h-4 bg-gray-700 rounded w-1/2"></div>
             </div>
           </div>
         </div>
@@ -44,16 +44,16 @@ export default function VideoPage() {
 
   if (error || !video) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900">
+      <div className="min-h-screen bg-gray-900">
         <Header onSearch={setSearchQuery} />
         <div className="p-6">
           <div className="max-w-6xl mx-auto text-center py-12">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Video Not Found</h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <h1 className="text-2xl font-bold text-white mb-4">Video Not Found</h1>
+            <p className="text-gray-400 mb-6">
               The video you're looking for doesn't exist or has been removed.
             </p>
             <Link href="/">
-              <Button className="flex items-center space-x-2">
+              <Button className="flex items-center space-x-2 bg-cyan-500 hover:bg-cyan-600 text-white">
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Home</span>
               </Button>
@@ -65,7 +65,7 @@ export default function VideoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-900 transition-colors duration-300">
       <Header onSearch={setSearchQuery} />
       
       <div className="p-6">
@@ -99,8 +99,8 @@ export default function VideoPage() {
             
             {/* Sidebar with Related Videos */}
             <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-4">Related Videos</h3>
+              <div className="bg-gray-800 rounded-xl p-6">
+                <h3 className="font-bold text-white mb-4">Related Videos</h3>
                 
                 {relatedVideos.length > 0 ? (
                   <div className="space-y-4">
