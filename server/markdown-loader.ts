@@ -77,12 +77,23 @@ export function loadVideosFromMarkdown(): VideoWithCreator[] {
 
   for (const categorySlug of categories) {
     const categoryPath = path.join(dataDir, categorySlug);
-    const videoFolders = fs.readdirSync(categoryPath, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
+    const items = fs.readdirSync(categoryPath, { withFileTypes: true });
 
-    for (const videoSlug of videoFolders) {
-      const videoPath = path.join(categoryPath, videoSlug, 'index.md');
+    for (const item of items) {
+      let videoPath: string;
+      let videoSlug: string;
+
+      if (item.isDirectory()) {
+        // Handle folder-based videos (existing structure)
+        videoSlug = item.name;
+        videoPath = path.join(categoryPath, videoSlug, 'index.md');
+      } else if (item.isFile() && item.name.endsWith('.md')) {
+        // Handle direct .md files in category folder
+        videoSlug = item.name.replace('.md', '');
+        videoPath = path.join(categoryPath, item.name);
+      } else {
+        continue; // Skip non-markdown files
+      }
       
       if (fs.existsSync(videoPath)) {
         try {

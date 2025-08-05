@@ -1,4 +1,4 @@
----
+-00--
 title: "Building Modern Web Applications with React and TypeScript"
 thumbnail: "https://images.unsplash.com/photo-1487014679447-9f8336841d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=225"
 videoUrl: "/videos/react-typescript-tutorial.mp4"
