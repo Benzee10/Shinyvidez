@@ -1,9 +1,11 @@
-node_modules
-.next
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-dist
+# Don't upload these to Vercel
+server/
+shared/
+data/
 .replit
-.git
+.nix
+replit.nix
+.local/
+.git/
+dist/
+!api/

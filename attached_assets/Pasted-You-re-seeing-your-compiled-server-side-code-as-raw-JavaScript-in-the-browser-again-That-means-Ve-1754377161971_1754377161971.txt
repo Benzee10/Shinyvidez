@@ -1,0 +1,102 @@
+You're seeing your compiled server-side code as raw JavaScript in the browser — again. That means Vercel is serving your backend files as static content instead of running them as serverless functions.
+
+🔥 What's Going Wrong?
+Your server/index.ts and other backend files are being:
+
+Bundled into your frontend build, OR
+
+Served statically from dist/public, OR
+
+Not deployed properly as a serverless function (e.g., api/index.ts)
+
+This is why you’re seeing raw source instead of a working app.
+
+✅ Correct Architecture for Vercel (Recap)
+To deploy a Vite + Express fullstack app on Vercel, you must separate your concerns:
+
+pgsql
+Copy
+Edit
+project/
+├── client/              → Vite frontend source
+├── server/              → Express app (logic only, not entry point)
+├── api/index.ts         → Serverless entry point for Express
+├── dist/public/         → Vite build output (frontend)
+├── vercel.json          → Routing config
+├── package.json
+✅ What You Must Do Now
+✅ 1. Create a Proper Serverless Entry File
+Create a new file: api/index.ts
+Do not put the whole server code here — just import and export your Express app:
+
+ts
+Copy
+Edit
+// api/index.ts
+import app from '../server/index';
+
+export default app;
+This tells Vercel to treat this as a serverless function, and run the Express app as backend logic.
+
+✅ 2. Fix Your vercel.json
+Update your vercel.json to this:
+
+json
+Copy
+Edit
+{
+  "version": 2,
+  "functions": {
+    "api/index.ts": {
+      "runtime": "@vercel/node@4.0.0"
+    }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "dest": "/api/index.ts" },
+    { "src": "/(.*)", "dest": "/dist/public/index.html" }
+  ]
+}
+✅ 3. Update Your vite.config.production.ts (or vite.config.ts)
+Make sure your Vite build does NOT include server/ files.
+
+Keep this:
+
+ts
+Copy
+Edit
+build: {
+  outDir: path.resolve(__dirname, 'dist/public'),
+  emptyOutDir: true
+}
+✅ But make sure you're not copying server files into that output.
+
+✅ 4. Update Your Build Command
+Your server/index.ts is TypeScript and needs to be bundled for Vercel.
+
+Update your Vercel project’s build command in the dashboard:
+
+bash
+Copy
+Edit
+npm install && vite build --config vite.config.production.ts && esbuild server/index.ts --bundle --platform=node --packages=external --format=esm --outfile=api/index.js
+This command does 3 things:
+
+Installs dependencies
+
+Builds the Vite frontend into dist/public
+
+Bundles your Express server into api/index.js
+
+✅ 5. Add type: "module" to your package.json (if using ESM)
+If you're using ES modules (based on your import syntax), you must declare:
+
+json
+Copy
+Edit
+{
+  "type": "module",
+  "engines": {
+    "node": "20.x"
+  }
+}
