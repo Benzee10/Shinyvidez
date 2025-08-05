@@ -70,3 +70,13 @@ The platform is designed to support various video sources including embedded ifr
 
 ### Search and Performance
 The application includes client-side search functionality with plans for more sophisticated search implementations. The architecture supports both simple text matching and fuzzy search capabilities, with the foundation laid for integrating advanced search libraries like Fuse.js.
+
+## Recent Changes (January 2025)
+
+### Vercel Deployment Optimization
+- **Complete serverless architecture**: Created isolated `/api/index.ts` as dedicated Vercel serverless function entry point
+- **Data layer separation**: Implemented `/api/storage.ts` with in-memory storage and proper TypeScript interfaces
+- **Build configuration fixes**: Separated frontend (`dist/public`) and backend (serverless functions) to prevent source code exposure
+- **Fixed React performance**: Resolved infinite re-render issues using `useMemo` instead of problematic `useEffect` patterns
+- **Configuration updates**: Updated `vercel.json` with proper runtime (`@vercel/node@4.0.0`) and routing for serverless deployment
+- **Migration completed**: Successfully migrated from Replit Agent to Replit environment with full compatibility
