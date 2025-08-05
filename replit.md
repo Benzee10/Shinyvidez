@@ -77,6 +77,8 @@ The application includes client-side search functionality with plans for more so
 - **Complete serverless architecture**: Created isolated `/api/index.ts` as dedicated Vercel serverless function entry point
 - **Data layer separation**: Implemented `/api/storage.ts` with in-memory storage and proper TypeScript interfaces
 - **Build configuration fixes**: Separated frontend (`dist/public`) and backend (serverless functions) to prevent source code exposure
+- **Frontend/Backend separation**: Fixed build script to only build React frontend for static deployment, preventing server code from being served as static files
 - **Fixed React performance**: Resolved infinite re-render issues using `useMemo` instead of problematic `useEffect` patterns
 - **Configuration updates**: Updated `vercel.json` with proper runtime (`@vercel/node@4.0.0`) and routing for serverless deployment
 - **Migration completed**: Successfully migrated from Replit Agent to Replit environment with full compatibility
+- **Deployment ready**: Resolved issue where backend JavaScript was being served instead of React app frontend
