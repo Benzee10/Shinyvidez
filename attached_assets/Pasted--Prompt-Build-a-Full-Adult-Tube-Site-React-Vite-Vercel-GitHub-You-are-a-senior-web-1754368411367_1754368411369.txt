@@ -1,0 +1,157 @@
+### 🎯 Prompt: Build a Full Adult Tube Site (React + Vite + Vercel + GitHub)
+
+You are a senior web engineer. Build a **high-performance adult tube-style website** using **React + Vite**, hosted on **Vercel** with content versioned in **GitHub**. The site should feel like Pornhub or XVideos: infinite scrolling, autoplay previews, embedded video playback, smart categorization, and ad injection zones.
+
+---
+
+### 🧱 Tech Stack
+
+- **Frontend**: React + Vite
+- **Styling**: Tailwind CSS + shadcn/ui + Framer Motion
+- **Markdown/Content**: `index.md` files per video
+- **Routing**: React Router or File-based routing
+- **Hosting**: GitHub + Vercel
+- **Playback**: Embedded iframes (Xerotica, RedGIFs, etc.) or native `<video>` tag
+
+---
+
+### 📁 Folder + Content Structure
+
+```
+data/
+  mila/
+    wild-flower/
+      index.md
+```
+
+Each video lives in `data/<model>/<slug>/index.md` and includes:
+
+- Metadata: title, description, tags, duration, source
+- Cover thumbnail image (referenced inline)
+- Video iframe or source URL (Xerotica, RedGIF, custom)
+- Optional preview GIF or autoplay MP4 (for hover previews)
+
+---
+
+### 📽️ Tube-Site Features
+
+#### 🔥 Home Page
+
+- Video Grid with title, tags, duration, view count, model
+- Autoplay preview on hover (MP4 or GIF)
+- Filter by Category, Tag, Model, Duration
+- “Trending”, “Newest”, “Top Rated” sections
+
+#### 🎞️ Video Page
+
+- Embedded player with title + description
+- Tags + model profile
+- View count, likes, related videos
+- Ad slots (Top, Mid, Bottom)
+- Social share buttons (Telegram, WhatsApp, etc.)
+
+---
+
+### 📢 Ad Integration
+
+Inject ads in 3 positions per video page:
+
+1. ✅ **Top AdSlot** – below player or above title  
+2. ✅ **Mid AdSlot** – between description and tags  
+3. ✅ **Bottom AdSlot** – before related videos  
+
+Supports:
+
+- Banner ads (image/HTML)
+- Cam site embeds
+- Smartlinks / Native ads
+- React components like:
+
+```tsx
+<AdSlot position="top" />
+<AdSlot position="middle" />
+<AdSlot position="bottom" />
+```
+
+---
+
+### 🧠 Navigation + Discovery
+
+- 🔎 Live Search with Fuse.js
+- Filters: Category, Model, Tags, Duration, Popularity
+- Model Pages (`/models/mila`) – bio + video list
+- Tag Pages (`/tags/solo`) – all matching videos
+- Auto-related videos below each post
+
+---
+
+### 💎 UI/UX
+
+- Fast grid layout using CSS Grid
+- Lazy load thumbnails with blurred previews
+- Infinite scroll or Load More
+- Mobile-friendly, swipeable layout
+- Sticky miniplayer (PiP-style)
+- Dark Mode toggle
+- Framer Motion transitions
+
+---
+
+### ✅ SEO + Extras
+
+- `og:image`, `twitter:card`, etc. for social share
+- Auto-generated sitemap.xml + RSS feed
+- Indexable content by Google (clean URLs)
+- Custom domains (e.g., tube.yoursite.com)
+
+---
+
+### 🔒 Optional Features
+
+- 🔞 Age check modal (cookie/session-based)
+- Safe Mode (blur explicit thumbnails)
+- Password-protected admin section
+
+---
+
+### ✨ Admin Tools
+
+- CLI to scaffold new video post:
+  ```bash
+  yarn create-video mila wild-flower --title "Wild Flower" --tags outdoor solo
+  ```
+- GitHub auto-deploy on push
+- Web UI for Markdown editing (optional)
+- n8n workflow to scrape external tube sites, push content to GitHub
+
+---
+
+### 🧩 Component Examples
+
+- `VideoCard.tsx` – Hover preview, duration, likes
+- `VideoGrid.tsx` – Responsive layout for home / tag / model pages
+- `VideoPage.tsx` – Player, info, ads, related
+- `Search.tsx` – Live search bar
+- `ModelPage.tsx`, `TagPage.tsx`
+- `AdSlot.tsx` – Configurable ad injections
+
+---
+
+### 💥 Bonus (Advanced Features)
+
+- Video Ratings + Comments (localStorage or Supabase)
+- “Watch Later” and Favorites list
+- Model bios + photo galleries
+- Telegram Bot for new uploads
+- API to serve video data via JSON (if needed)
+
+---
+
+### 💡 Constraints
+
+- All content must live in `data/<model>/<slug>/index.md`
+- No CMS — content managed by markdown + GitHub
+- All images and embeds referenced inside the Markdown
+- Must scale to 5,000+ videos
+- Must work flawlessly on mobile
+

@@ -1,0 +1,153 @@
+### 🎯 Prompt: Build a High-End Media Video Platform (React + Vite + Vercel)
+
+You are a senior frontend engineer. Build a **modern, fast, and scalable video streaming platform** using **React + Vite**, styled with **Tailwind CSS**, and hosted via **Vercel** with version control via **GitHub**. The site should provide a smooth experience similar to large video platforms, with autoplay previews, responsive design, and smart content discovery.
+
+---
+
+### 🧱 Core Technology Stack
+
+- **Framework**: React + Vite
+- **Styling**: Tailwind CSS + shadcn/ui + Framer Motion
+- **Content Format**: Markdown (`index.md`) per video
+- **Routing**: React Router (or Vite plugin for file-based routing)
+- **Deployment**: GitHub + Vercel
+- **Playback**: `<video>` tag or embedded iframe sources
+
+---
+
+### 📁 Folder & Data Structure
+
+Organize videos in a clean folder structure:
+
+```
+data/
+  creator-name/
+    video-title/
+      index.md
+      01.jpg
+```
+
+Each `index.md` contains:
+
+- Frontmatter (title, tags, description, duration, views)
+- Video embed or player reference
+- Inline cover image and metadata
+
+---
+
+### 🎥 Video Platform Features
+
+#### 🏠 Homepage
+
+- Video Grid with:
+  - Title, duration, tags
+  - Hover previews (autoplay muted snippets or animated thumbnails)
+- Sections: “Trending”, “Newest”, “Most Watched”
+- Filters for tags, creators, or categories
+
+#### 📄 Video Page
+
+- Full video player (embed or native)
+- Metadata (description, tags, creator, duration)
+- Related video suggestions
+- Share buttons and optional interaction (views/likes)
+
+---
+
+### 🔎 Discovery & Navigation
+
+- Instant search with Fuse.js or Pagefind
+- Browse by tag, creator, or category
+- Creator pages with profile info and all their videos
+- Tag pages with filtered content
+
+---
+
+### 🎯 Ad Integration (Non-Intrusive)
+
+Inject ad components at three strategic points in each video page:
+
+1. ✅ **Top Ad Slot** – below the video player
+2. ✅ **Mid-Content Ad Slot** – between description and tags
+3. ✅ **Bottom Ad Slot** – above related videos
+
+- Ads can be image banners, iframes, or call-to-action widgets
+- Use a reusable component system like:
+
+```tsx
+<AdSlot position="top" />
+<AdSlot position="middle" />
+<AdSlot position="bottom" />
+```
+
+- A sticky **corner video ad widget** can autoplay with a "Learn More" button
+
+---
+
+### 💡 UI/UX Highlights
+
+- Responsive grid and layout
+- Smooth route transitions using Framer Motion
+- Lazy loading and blurred image placeholders
+- Sticky mini-player (Picture-in-Picture style)
+- Mobile-first and swipe-friendly
+
+---
+
+### ✅ SEO & Performance
+
+- Meta tags for OpenGraph and Twitter
+- Sitemap.xml and RSS feed generation
+- Optimized for static deployment on Vercel
+- Fast image and video delivery (lazy load, next-gen formats)
+
+---
+
+### 🧩 Key Components
+
+- `VideoCard.tsx` – Hover-preview card with duration & title
+- `VideoGrid.tsx` – Grid layout for home, tag, or creator pages
+- `VideoPage.tsx` – Full video view with metadata and ad slots
+- `Search.tsx` – Instant fuzzy search bar
+- `Sidebar.tsx` – Filters and categories
+- `MiniPlayer.tsx` – Sticky floating player
+- `AdSlot.tsx` – Customizable ad zones
+
+---
+
+### 🛠 Admin & Developer Tools
+
+- CLI to scaffold new video post:
+  ```bash
+  yarn create-video creator-name "video-title" --tags travel drone
+  ```
+- GitHub integration for content versioning
+- Auto-deploy via push to `main` branch
+- Optional `n8n` or webhook support for syncing external data sources
+
+---
+
+### 🔐 Optional Features
+
+- Welcome screen or age confirmation modal (if needed)
+- Safe Mode toggle (for restricted thumbnails)
+- Password-protected access for private collections
+
+---
+
+### 🧠 Bonus Features
+
+- “Watch Later” and Favorites (stored in localStorage)
+- Creator pages with optional bio and social links
+- Light / Dark theme toggle + accent color customization
+- Telegram/WhatsApp bot that auto-posts new entries
+
+---
+
+### 🧾 Constraints
+
+- All video content is markdown-based: `data/<creator>/<slug>/index.md`
+- No CMS; all updates via Git or automation workflows
+- Videos can be embedded or hosted natively
+- Designed to scale to 10,000+ entries
+- Responsive, mobile-first, accessible, and SEO-friendly
