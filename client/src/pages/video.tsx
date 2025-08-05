@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { VideoWithCreator } from "@shared/schema";
 import { Header } from "@/components/layout/header";
 import { VideoPlayer } from "@/components/video/video-player";
-import { AdSlot } from "@/components/ads/ad-slot";
+import { ImageAd } from "@/components/ads/image-ad";
 import { VideoCard } from "@/components/video/video-card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -89,12 +89,6 @@ export default function VideoPage() {
             {/* Main Video Player */}
             <div className="lg:col-span-2">
               <VideoPlayer video={video} />
-
-              {/* Top Ad Slot */}
-              <AdSlot position="top" className="mt-6" />
-
-              {/* Mid Ad Slot */}
-              <AdSlot position="middle" className="mt-6" />
             </div>
             
             {/* Sidebar with Related Videos */}
@@ -140,7 +134,13 @@ export default function VideoPage() {
                 )}
 
                 {/* Bottom Ad Slot */}
-                <AdSlot position="bottom" className="mt-6" />
+                <ImageAd 
+                  imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
+                  title="Premium Content"
+                  subtitle="Explore more exclusive videos"
+                  cta="Visit Now"
+                  className="h-32 mt-6"
+                />
               </div>
             </div>
           </div>

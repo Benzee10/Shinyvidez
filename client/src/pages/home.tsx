@@ -4,10 +4,7 @@ import { VideoWithCreator, Category } from "@shared/schema";
 import { Header } from "@/components/layout/header";
 
 import { VideoGrid } from "@/components/video/video-grid";
-import { AdSlot } from "@/components/ads/ad-slot";
-import { BannerAd } from "@/components/ads/banner-ad";
-import { HeaderAd } from "@/components/ads/header-ad";
-import { ImageAd } from "@/components/ads/image-ad";
+
 import { StickyVideoWidget } from "@/components/widgets/sticky-video-widget";
 import { DailyPopup } from "@/components/modals/daily-popup";
 import { PopupTester } from "@/components/dev/popup-tester";
@@ -65,7 +62,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 transition-colors duration-300">
-      <HeaderAd />
       <Header onSearch={setSearchQuery} />
       
       <div className="w-full">
@@ -112,16 +108,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Top Ad Slot */}
-            <ImageAd 
-              imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
-              title="🔥 Premium Adult Entertainment"
-              subtitle="Exclusive content • 4K Quality • Unlimited Access"
-              cta="Join Now"
-              className="h-32 mb-6"
-            />
-            <AdSlot position="top" className="mb-8" />
-
             {/* Video Grid */}
             {videosLoading ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -139,28 +125,6 @@ export default function Home() {
               <VideoGrid videos={filteredVideos} />
             )}
 
-            {/* Mid Ad Slot */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 my-8">
-              <ImageAd 
-                imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
-                title="Premium Access"
-                subtitle="Unlimited streaming"
-                className="h-48"
-              />
-              <ImageAd 
-                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-m-_6OOa20rzN5-qUcyeQQU2i04HmI10_0o1rM2soZjnFlGWjzv7XlQ3mAH1fimkcg&usqp=CAU"
-                title="Exclusive Content"
-                subtitle="High quality videos"
-                className="h-48"
-              />
-              <ImageAd 
-                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmkMnipC8GGooa81DxOipkMvk78sGbVk1FA&s"
-                title="Join Premium"
-                subtitle="Members only access"
-                className="h-48"
-              />
-            </div>
-
             {/* Load More Button */}
             {filteredVideos.length > 0 && (
               <div className="text-center mt-8">
@@ -172,33 +136,6 @@ export default function Home() {
                 </Button>
               </div>
             )}
-
-            {/* Bottom Ad Slot */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-              <ImageAd 
-                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-m-_6OOa20rzN5-qUcyeQQU2i04HmI10_0o1rM2soZjnFlGWjzv7XlQ3mAH1fimkcg&usqp=CAU"
-                title="Premium Videos"
-                subtitle="Unlimited access to exclusive content"
-                className="h-48"
-              />
-              <ImageAd 
-                imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmkMnipC8GGooa81DxOipkMvk78sGbVk1FA&s"
-                title="Join Today"
-                subtitle="Start your premium journey"
-                className="h-48"
-              />
-            </div>
-            
-            {/* Final Banner */}
-            <div className="mt-8">
-              <ImageAd 
-                imageUrl="https://www.wordstream.com/wp-content/uploads/2021/07/banner-ads-examples-ncino.jpg"
-                title="Experience Premium Like Never Before"
-                subtitle="Join thousands of satisfied members • 30-day money back guarantee"
-                cta="Get Started Free"
-                className="h-24"
-              />
-            </div>
           </div>
         </main>
       </div>
