@@ -17,9 +17,9 @@ export const creators = pgTable("creators", {
 export const videos = pgTable("videos", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
-  description: text("description"),
   thumbnail: text("thumbnail").notNull(),
   videoUrl: text("video_url"),
+  embedUrl: text("embed_url"),
   duration: text("duration").notNull(),
   viewCount: integer("view_count").default(0),
   likeCount: integer("like_count").default(0),

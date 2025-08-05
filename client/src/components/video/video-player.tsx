@@ -47,7 +47,16 @@ export function VideoPlayer({ video }: VideoPlayerProps) {
     <div className="space-y-6">
       {/* Video Player */}
       <div className="relative aspect-video bg-black rounded-xl overflow-hidden" data-testid="video-player">
-        {video.videoUrl ? (
+        {video.embedUrl ? (
+          <iframe
+            src={video.embedUrl}
+            className="w-full h-full"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title={video.title}
+          />
+        ) : video.videoUrl ? (
           <video 
             controls 
             className="w-full h-full"
@@ -137,14 +146,7 @@ export function VideoPlayer({ video }: VideoPlayerProps) {
           </Button>
         </div>
         
-        {/* Description */}
-        {video.description && (
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {video.description}
-            </p>
-          </div>
-        )}
+
         
         {/* Tags */}
         {Array.isArray(video.tags) && video.tags.length > 0 && (

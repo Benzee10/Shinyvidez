@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Play, Sun, Moon, Upload, Menu } from "lucide-react";
+import { Play, Sun, Moon, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/search/search-bar";
 import { useTheme } from "next-themes";
@@ -50,14 +50,7 @@ export function Header({ onSearch }: HeaderProps) {
               <Moon className="w-5 h-5 hidden dark:block" />
             </Button>
             
-            {/* Upload Button */}
-            <Button
-              className="hidden md:flex items-center space-x-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-              data-testid="upload-button"
-            >
-              <Upload className="w-4 h-4" />
-              <span>Upload</span>
-            </Button>
+
 
             {/* Mobile Menu */}
             <Button

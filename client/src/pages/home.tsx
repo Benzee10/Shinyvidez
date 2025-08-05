@@ -31,7 +31,6 @@ export default function Home() {
     if (searchQuery) {
       result = result.filter(video => 
         video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (video.description && video.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (Array.isArray(video.tags) && video.tags.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase()))) ||
         video.creator.displayName.toLowerCase().includes(searchQuery.toLowerCase())
       );
