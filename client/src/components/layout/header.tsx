@@ -18,16 +18,16 @@ export function Header({ onSearch }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+    <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
-              <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
                 <Play className="w-5 h-5 text-white fill-current" />
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">StreamVault</span>
+              <span className="text-xl font-bold text-white">Shiny Videos</span>
             </Link>
           </div>
 
@@ -38,25 +38,11 @@ export function Header({ onSearch }: HeaderProps) {
 
           {/* Navigation Actions */}
           <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              data-testid="theme-toggle"
-            >
-              <Sun className="w-5 h-5 dark:hidden" />
-              <Moon className="w-5 h-5 hidden dark:block" />
-            </Button>
-            
-
-
             {/* Mobile Menu */}
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800"
+              className="md:hidden p-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="mobile-menu-toggle"
             >

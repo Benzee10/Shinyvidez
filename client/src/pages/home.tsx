@@ -58,7 +58,7 @@ export default function Home() {
   }, [videos, searchQuery, selectedCategory, sortBy]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-900 transition-colors duration-300">
       <Header onSearch={setSearchQuery} />
       
       <div className="flex">
@@ -66,62 +66,45 @@ export default function Home() {
         
         <main className="flex-1 overflow-hidden">
           <div className="p-6">
-            {/* Hero Section */}
-            <section className="mb-8">
-              <div className="relative bg-gradient-to-r from-red-500 to-teal-400 rounded-2xl p-8 text-white overflow-hidden">
-                <div className="relative z-10">
-                  <h1 className="text-4xl font-bold mb-4">Discover Amazing Content</h1>
-                  <p className="text-xl mb-6 opacity-90">
-                    Explore thousands of high-quality videos from talented creators worldwide
-                  </p>
-                  <Button 
-                    className="bg-white text-red-500 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                    data-testid="start-watching-button"
-                  >
-                    Start Watching
-                  </Button>
-                </div>
-                <div className="absolute inset-0 bg-black/20"></div>
-              </div>
+            {/* Section Header */}
+            <section className="mb-6">
+              <h1 className="text-2xl font-bold text-white mb-2">Recent & Trending</h1>
             </section>
 
             {/* Filter Bar */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-4">
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-48" data-testid="category-select">
-                    <SelectValue placeholder="All Categories" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Categories</SelectItem>
-                    {categories.map((category) => (
-                      <SelectItem key={category.id} value={category.name}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48" data-testid="sort-select">
-                    <SelectValue placeholder="Sort by Newest" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Sort by Newest</SelectItem>
-                    <SelectItem value="popular">Most Popular</SelectItem>
-                    <SelectItem value="liked">Most Liked</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+            <div className="flex items-center space-x-4 mb-6">
+              <Button 
+                variant={selectedCategory === "all" ? "default" : "outline"}
+                className="bg-cyan-500 hover:bg-cyan-600 text-white border-none"
+                onClick={() => setSelectedCategory("all")}
+                data-testid="all-videos-button"
+              >
+                All Videos
+              </Button>
               
               <Button 
                 variant="outline"
-                className="flex items-center space-x-2"
-                data-testid="filter-button"
+                className="text-white border-gray-600 hover:bg-gray-800"
+                onClick={() => setSortBy(sortBy === "newest" ? "popular" : "newest")}
+                data-testid="show-tags-button"
               >
-                <Filter className="w-4 h-4" />
-                <span>Filters</span>
+                Show Tags
               </Button>
+              
+              {categories.map((category) => (
+                <Button 
+                  key={category.id}
+                  variant={selectedCategory === category.name ? "default" : "outline"}
+                  className={`${selectedCategory === category.name 
+                    ? "bg-cyan-500 hover:bg-cyan-600 text-white border-none" 
+                    : "text-white border-gray-600 hover:bg-gray-800"
+                  }`}
+                  onClick={() => setSelectedCategory(category.name)}
+                  data-testid={`category-${category.slug}`}
+                >
+                  {category.name}
+                </Button>
+              ))}
             </div>
 
             {/* Top Ad Slot */}
