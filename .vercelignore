@@ -7,5 +7,7 @@ data/
 replit.nix
 .local/
 .git/
-dist/
+dist/index.js
+dist/*.js
+!dist/public/
 !api/
