@@ -8,6 +8,9 @@ import { AdSlot } from "@/components/ads/ad-slot";
 import { BannerAd } from "@/components/ads/banner-ad";
 import { HeaderAd } from "@/components/ads/header-ad";
 import { ImageAd } from "@/components/ads/image-ad";
+import { StickyVideoWidget } from "@/components/widgets/sticky-video-widget";
+import { DailyPopup } from "@/components/modals/daily-popup";
+import { PopupTester } from "@/components/dev/popup-tester";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Filter } from "lucide-react";
@@ -199,6 +202,15 @@ export default function Home() {
           </div>
         </main>
       </div>
+      
+      {/* Sticky Video Widget */}
+      <StickyVideoWidget />
+      
+      {/* Daily Popup */}
+      <DailyPopup />
+      
+      {/* Development Tools */}
+      <PopupTester />
     </div>
   );
 }
